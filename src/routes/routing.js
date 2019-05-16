@@ -40,22 +40,24 @@ const AppNavigator = createStackNavigator({
     Home: {
         screen: TabNavigator,
         navigationOptions: {
-            header: <NavBar />,
+            header: ({ navigation }) => navigation.state.routes[navigation.state.index].routes[navigation.state.routes[navigation.state.index].index].routeName !== 'Trade'
+            ? <NavBar navigation={navigation} />
+            : null,
         }
     }
 }, {
-    initialRouteName: 'Login',
-    headerLayoutPreset: 'center',
-    defaultNavigationOptions: {
-        headerStyle: {
-            backgroundColor: '#fff',
-        },
-        headerTintColor: '#000',
-        headerTitleStyle: {
-            fontSize: THEME_CONFIG.fontProp.lgFont,
-            fontFamily: THEME_CONFIG.fontProp.fontFamily.regular
-        },
-        headerTruncatedBackTitle: null,
+        initialRouteName: 'Login',
+        headerLayoutPreset: 'center',
+        defaultNavigationOptions: {
+            headerStyle: {
+                backgroundColor: '#fff',
+            },
+            headerTintColor: '#000',
+            headerTitleStyle: {
+                fontSize: THEME_CONFIG.fontProp.lgFont,
+                fontFamily: THEME_CONFIG.fontProp.fontFamily.regular
+            },
+            headerTruncatedBackTitle: null,
         },
         transitionConfig,
     });
